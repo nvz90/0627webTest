@@ -1,0 +1,53 @@
+create table member2(
+	id varchar(20) not null primary key,
+	pass varchar(20) not null,
+	name varchar(20) not null,
+	gender varchar (6) not null,
+	birthday DATE not null,
+	email varchar(20) not null,
+	phoneNum varchar(20) not null,
+	address varchar(50) not null
+);
+create table product (
+	userId varchar(20) not null,
+	productId varchar(20) not null primary key,
+	pname varchar(50) not null,
+	unitPrice int not null,
+	description varchar(50) not null,
+	mnufacturer VARCHAR(50) not null,
+	category VARCHAR(50) not null,
+	unitsInStock int  not null,
+	condi VARCHAR(20) not null,
+	imageName VARCHAR(30) not null,
+	foreign key (userId) references member2(id)
+);
+
+create table cart(
+	num int not null auto_increment primary key,
+	id varchar(10) not null,
+	productId varchar(50) not null,
+    pname varchar(50) not null,
+    price varchar(20) not null,
+    quantity int not null,
+    subtotal int not null,
+    foreign key (id) references member2(id)
+);
+
+##여기부터 설계 대충함
+create table orderinfo(
+	num int not null auto_increment primary key,
+    userId varchar(10) not null,
+    
+	name varchar(40) not null,
+    day DATE not null,
+    country varchar(50) not null,
+    zipcode varchar(10) not null,
+    address varchar(60) not null,
+    
+    productId varchar(50) not null,
+    pname varchar(50) not null,
+    price varchar(20) not null,
+    quantity int not null,
+    total int not null,
+    foreign key (userId) references member2(id)
+);
